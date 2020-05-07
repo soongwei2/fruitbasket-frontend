@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { countItems } from 'commons';
+import { countItems } from '@soongwei/commons';
 import { Observable } from 'rxjs';
 import { IBasket } from '../shared/models/basket';
 import { RootState } from '../store';

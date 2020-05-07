@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
-import { formatMonies } from 'commons/basket/monies';
+import { formatMonies } from '@soongwei/commons/basket/monies';
 import _ from 'lodash';
 import { AddCouponComponent } from 'src/app/shared/components/add-coupon/add-coupon.component';
 import { DialogPaymentComponent } from 'src/app/shared/components/dialog-payment/dialog-payment.component';

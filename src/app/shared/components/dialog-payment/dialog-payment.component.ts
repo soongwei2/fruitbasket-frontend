@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
-import { formatMonies } from 'commons/basket/monies';
+import { formatMonies } from '@soongwei/commons/basket/monies';
 import _ from 'lodash';
 import { combineLatest, Observable } from 'rxjs';
 import { take } from 'rxjs/operators';

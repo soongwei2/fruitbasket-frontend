@@ -1,6 +1,6 @@
 import { DataSource } from '@angular/cdk/collections';
 import { Store } from '@ngrx/store';
-import { promotion } from 'commons/basket/calculations';
+import { promotion } from '@soongwei/commons/basket/calculations';
 import { combineLatest, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { IBasket } from 'src/app/shared/models/basket';
