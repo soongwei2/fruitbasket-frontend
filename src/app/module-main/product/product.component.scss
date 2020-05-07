@@ -1,0 +1,28 @@
+.product-card {
+  width: 200px;
+  margin: 16px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+
+.main-div {
+  display: flex;
+  justify-content: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.content-div {
+  display: flex;
+  flex-direction: row;
+  // position: absolute;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+}
+
+.cart-action {
+  padding: 0px;
+}

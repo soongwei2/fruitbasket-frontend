@@ -1,0 +1,17 @@
+<div *ngIf="list$ | async as products" class="main-div">
+  <mat-card *ngFor="let product of products" class="product-card mat-elevation-z8">
+    <img mat-card-image src={{product.image}} style="position: relative; margin: 0 -16px 0px -16px;">
+    <div class="content-div">
+      <mat-card-content>
+        <mat-card-title>{{product.name}}</mat-card-title>
+        <mat-card-subtitle>${{product.price}}</mat-card-subtitle>
+      </mat-card-content>
+      <span class="spacer"></span>
+      <mat-card-actions class="cart-action">
+        <button class="add-cart-button" mat-icon-button aria-label="Shopping Cart" (click)="onAddToCart(product)">
+          <mat-icon matBadgeColor="primary">add_shopping_cart</mat-icon>
+        </button>
+      </mat-card-actions>
+    </div>
+  </mat-card>
+</div>

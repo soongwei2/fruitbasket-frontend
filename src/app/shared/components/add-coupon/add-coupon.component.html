@@ -1,0 +1,25 @@
+<!-- <h2 mat-dialog-title>Coupon</h2> -->
+<div mat-dialog-content>
+  <h3>Enter your coupon code</h3>
+
+</div>
+<div>
+  <form [formGroup]="form" (ngSubmit)="onSubmit($event)">
+    <mat-form-field>
+      <mat-label>Coupon Code</mat-label>
+      <input matInput type="text" formControlName="couponCode">
+      <mat-error >Invalid coupon code</mat-error>
+    </mat-form-field>
+
+  </form>
+</div>
+
+<div mat-dialog-actions>
+  <div class="button">
+    <button type="button" mat-stroked-button (click)="onCancel()">Cancel</button>
+  </div>
+  <span class="spacer"></span>
+  <div class="button">
+    <button [disabled]="form.get('couponCode').invalid" type="submit" mat-raised-button color="primary" (click)="onSubmit($event)" cdkFocusInitial>Ok</button>
+  </div>
+</div>

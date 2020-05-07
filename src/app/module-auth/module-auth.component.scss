@@ -1,0 +1,32 @@
+.main-div {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.main-card {
+  max-width: 300px;
+  padding: 40px;
+}
+
+.mat-form-field {
+  width: 100%;
+}
+
+mat-card-title,
+mat-card-content {
+  display: flex;
+  justify-content: center;
+}
+
+
+.button {
+  display: flex;
+  justify-content: flex-end;
+
+}
+
+button {
+  width: 100%;
+}

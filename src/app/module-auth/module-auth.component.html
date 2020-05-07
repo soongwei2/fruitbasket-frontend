@@ -1,0 +1,31 @@
+<div class="main-div">
+  <mat-card class="mat-elevation-z8 main-card">
+    <mat-card-title>Fruit Basket</mat-card-title>
+    <mat-card-content>
+      <form [formGroup]="form" (ngSubmit)="onSubmit($event)">
+        <mat-form-field appearance="fill">
+          <mat-label>Email</mat-label>
+          <input matInput type="text" formControlName="email">
+          <mat-error *ngIf="form.get('email').invalid">Invalid email address</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Password</mat-label>
+          <input matInput type="password" formControlName="password">
+          <mat-error *ngIf="form.get('password').invalid">Invalid password</mat-error>
+
+        </mat-form-field>
+
+        <div class="button">
+          <button class="mat-elevation-z8" type="submit" mat-raised-button color="primary" id="login">Log In</button>
+        </div>
+
+        <div class="button" style="margin-top: 10px;">
+          <button class="mat-elevation-z8" type="submit" mat-raised-button id="create">Create Account</button>
+        </div>
+
+      </form>
+    </mat-card-content>
+  </mat-card>
+
+</div>

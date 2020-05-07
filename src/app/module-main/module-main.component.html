@@ -1,0 +1,20 @@
+<mat-toolbar class="app-toolbar" color="primary">
+  <mat-toolbar-row>
+    <button mat-icon-button aria-label="Back">
+      <mat-icon aria-hidden="false" matBadgeColor="accent">home</mat-icon>
+    </button>
+    <span style="margin-left: 16px;">Fruit Basket</span>
+    <span class="spacer"></span>
+    <button mat-icon-button aria-label="Shopping Cart" routerLink="/basket">
+      <mat-icon aria-hidden="false" [matBadge]="(basketList$ | async).length ?countItems(basketList$ | async):''"
+        matBadgeColor="warn">shopping_cart</mat-icon>
+    </button>
+
+    <button mat-icon-button aria-label="Profile" routerLink="/profile">
+      <mat-icon aria-hidden="false">account_circle</mat-icon>
+    </button>
+
+
+  </mat-toolbar-row>
+</mat-toolbar>
+<app-product style="margin-top: 64px;"></app-product>
