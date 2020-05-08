@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  servicePath: "http://localhost:9090"
+  servicePath: "http://soongwei.synology.me:8082"
 };
