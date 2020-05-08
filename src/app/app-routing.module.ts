@@ -14,12 +14,12 @@ const routes: Routes = [
     loadChildren: () => import('./module-main/module-main.module').then(m => m.ModuleMainModule),
     canActivate: [AuthGuardService],
   },
- 
+
   { path: '**', redirectTo: '/' }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { scrollPositionRestoration: 'enabled' })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
