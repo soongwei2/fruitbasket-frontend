@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  servicePath: "http://localhost:9090"
 };
