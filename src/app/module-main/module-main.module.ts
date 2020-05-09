@@ -10,6 +10,7 @@ import { ProductComponent } from './product/product.component';
 import { MatCardModule } from '@angular/material/card';
 import { DialogPaymentService } from '../shared/components/dialog-payment/dialog-payment.service';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 const modules = [
   MatToolbarModule,
@@ -18,7 +19,8 @@ const modules = [
   MatBadgeModule,
   MatCardModule,
   // ProductModule,
-  MatDividerModule
+  MatDividerModule,
+  MatTooltipModule
 ];
 
 @NgModule({

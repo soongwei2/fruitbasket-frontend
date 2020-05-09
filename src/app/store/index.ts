@@ -12,6 +12,8 @@ import { BasketState, basketReducer } from './basket/basket.reducer';
 import { BasketEffects } from './basket/basket.effect';
 import { invoiceReducer, InvoiceState } from './invoice/invoice.reducer';
 import { InvoiceEffects } from './invoice/invoice.effect';
+import { PromotionState, promotionReducer } from './promotion/promotion.reducer';
+import { PromotionEffects } from './promotion/promotion.effect';
 
 export const STORE_KEYS_TO_PERSIST = [
   'user',
@@ -24,6 +26,7 @@ export interface RootState {
   product: ProductState;
   basket: BasketState;
   invoice: InvoiceState;
+  promotion: PromotionState;
 }
 
 export const rootReducer: ActionReducerMap<RootState> = {
@@ -32,6 +35,7 @@ export const rootReducer: ActionReducerMap<RootState> = {
   product: productReducer,
   basket: basketReducer,
   invoice: invoiceReducer,
+  promotion: promotionReducer,
 };
 
 export const rootEffects = [
@@ -40,6 +44,7 @@ export const rootEffects = [
   ProductEffects,
   BasketEffects,
   InvoiceEffects,
+  PromotionEffects,
 ]
 
 export function localStorageSyncReducer(reducer: ActionReducer<any>): ActionReducer<any> {

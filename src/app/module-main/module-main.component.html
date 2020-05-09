@@ -5,12 +5,12 @@
     </button>
     <span style="margin-left: 16px;">Fruit Basket</span>
     <span class="spacer"></span>
-    <button mat-icon-button aria-label="Shopping Cart" routerLink="/basket">
+    <button mat-icon-button aria-label="Shopping Cart" routerLink="/basket" matTooltip="Basket">
       <mat-icon aria-hidden="false" [matBadge]="(basketList$ | async).length ?countItems(basketList$ | async):''"
         matBadgeColor="warn">shopping_cart</mat-icon>
     </button>
 
-    <button mat-icon-button aria-label="Profile" routerLink="/profile">
+    <button mat-icon-button aria-label="Profile" routerLink="/profile" matTooltip="Profile">
       <mat-icon aria-hidden="false">account_circle</mat-icon>
     </button>
 

@@ -10,6 +10,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { ProfileRoutingModule } from './profile-routing.module';
 import { ProfileComponent } from './profile.component';
 import { MatTableModule } from '@angular/material/table';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 const modules = [
   SharedModule,
@@ -21,6 +22,7 @@ const modules = [
   MatDividerModule,
   MatExpansionModule,
   MatTableModule,
+  MatTooltipModule
 ];
 
 @NgModule({

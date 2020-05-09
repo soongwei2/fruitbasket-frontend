@@ -9,6 +9,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DialogPaymentComponent } from './components/dialog-payment/dialog-payment.component';
 import { CommonModule } from '@angular/common';
 import { DialogPaymentService } from './components/dialog-payment/dialog-payment.service';
+import { DialogGenerateCouponComponent } from './components/dialog-generate-coupon/dialog-generate-coupon.component';
 
 const modules = [
   MatButtonModule,
@@ -24,6 +25,7 @@ const modules = [
     BackButtonDirective,
     AddCouponComponent,
     DialogPaymentComponent,
+    DialogGenerateCouponComponent,
   ],
   imports: [
     CommonModule,

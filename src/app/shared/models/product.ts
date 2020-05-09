@@ -15,6 +15,7 @@ export interface IPromotion{
     type?: string;
     quantity?: number;
     expiryDate?: Date;
+    couponCode?: string;
     deleted?: boolean;
     promotionRules?: IPromotionRules[];
 }

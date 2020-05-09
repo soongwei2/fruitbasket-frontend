@@ -8,7 +8,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { BasketRoutingModule } from './basket-routing.module';
 import { BasketComponent } from './basket.component';
-
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 const modules = [
   SharedModule,
@@ -17,6 +17,7 @@ const modules = [
   MatButtonModule,
   MatDialogModule,
   MatTableModule,
+  MatTooltipModule,
 ];
 
 @NgModule({
