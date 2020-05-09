@@ -15,6 +15,7 @@ import { selectBasket } from 'src/app/store/basket/basket.reducer';
 import { showSnackBar } from 'src/app/store/layout/layout.action';
 import { AddPromotion } from 'src/app/store/promotion/promotion.action';
 import { BasketDataSource } from './basket.datasource';
+import { UpdateProductsService } from 'src/app/shared/services/update-products.service';
 
 @Component({
   selector: 'app-basket',
@@ -33,7 +34,8 @@ export class BasketComponent implements OnInit {
   constructor(
     private store: Store<RootState>,
     public dialog: MatDialog,
-    private dialogPaymentService: DialogPaymentService
+    private dialogPaymentService: DialogPaymentService,
+    public productService: UpdateProductsService,
   ) { }
 
   ngOnInit(): void {

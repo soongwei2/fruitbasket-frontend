@@ -1,7 +1,7 @@
 import { createReducer, on } from '@ngrx/store';
 import { IBasket } from 'src/app/shared/models/basket';
 import { RootState } from '..';
-import { AddCouponCode, AddToBasket, RemoveFromBasket, ClearBasket } from './basket.action';
+import { AddCouponCode, AddToBasket, RemoveFromBasket, ClearBasket, UpdateBasket } from './basket.action';
 import _ from 'lodash';
 
 export interface BasketState {
@@ -48,6 +48,7 @@ export const basketReducer = createReducer(initialState,
   }),
   on(AddCouponCode, (state, action) => { return { ...state, couponCode: action.code } }),
   on(ClearBasket, (state, action) => { return { ...state, ...initialState } }),
+  on(UpdateBasket, (state, action) => { return { ...state, list: action.list } }),
 );
 
 

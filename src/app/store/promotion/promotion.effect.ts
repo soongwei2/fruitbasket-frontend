@@ -12,6 +12,7 @@ import { environment } from 'src/environments/environment';
 import { RootState } from '..';
 import { hideLoading, showLoading, showSnackBar } from '../layout/layout.action';
 import { AddPromotion } from './promotion.action';
+import { GetProduct } from '../product/product.action';
 
 @Injectable()
 export class PromotionEffects {
@@ -34,6 +35,7 @@ export class PromotionEffects {
 
 
               if (response) {
+                this.store.dispatch(GetProduct({ product: { deleted: false } }));
                 this.store.dispatch(showSnackBar({ message: 'Successfully added promotion' }));
 
                 const dialogRef = this.dialog.open(DialogGenerateCouponComponent, {

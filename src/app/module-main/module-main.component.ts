@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { IBasket } from '../shared/models/basket';
 import { RootState } from '../store';
 import { selectBasket } from '../store/basket/basket.reducer';
+import { UpdateProductsService } from '../shared/services/update-products.service';
 
 @Component({
   selector: 'app-module-main',
@@ -20,6 +21,7 @@ export class ModuleMainComponent implements OnInit {
   constructor(
     private store: Store<RootState>,
     private router: Router,
+    public productService: UpdateProductsService,
   ) { }
 
   ngOnInit(): void {
