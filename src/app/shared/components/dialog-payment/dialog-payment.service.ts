@@ -16,7 +16,7 @@ export class DialogPaymentService {
 
   public open(data: any) {
     this.dialogRef = this.dialog.open(DialogPaymentComponent, {
-      minWidth: '300px',
+      minWidth: '400px',
       data
     });
   }

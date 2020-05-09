@@ -75,7 +75,7 @@
     <span class="coupon">{{ coupon }}</span>
     <span class="spacer"></span>
 
-    <span class="subtotal" style="margin-right: 16px;"> Subtotal: {{ dataSource.subTotal() | async | currency}}</span>
+    <span class="subtotal" style="margin-right: 16px;"> Total: {{ dataSource.subTotal() | async | currency}}</span>
     <button mat-raised-button color="warn" (click)="onCheckout()">Checkout</button>
   </div>
 

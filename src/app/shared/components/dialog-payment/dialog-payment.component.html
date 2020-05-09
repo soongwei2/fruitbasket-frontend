@@ -1,14 +1,34 @@
 <!-- <h2 mat-dialog-title>Coupon</h2> -->
+<div mat-dialog-title style="font-weight: bold;">Order Summary</div>
 <div mat-dialog-content>
-  <h3>Pay a total of {{ data.subTotal | async | currency }}</h3>
+  <div style="display: flex;">
+    <div>Subtotal ({{totalItems$ | async}} Items)</div>
+    <span class="spacer"></span>
+    <div>{{ originalPriceTotal$ | async | currency }}</div>
+  </div>
+  <div style="display: flex;">
+    <div>Promotion</div>
+    <span class="spacer"></span>
+    <div>-{{ ((originalPriceTotal$ | async) - (data.subTotal | async)) | currency }}</div>
+  </div>
+  <div style="display: flex;">
+    <div>Shipping Fee</div>
+    <span class="spacer"></span>
+    <div>{{ 0 | currency }}</div>
+  </div>
+  <div style="display: flex;margin-top: 16px;">
+    <div style="font-weight: 700;">Total</div>
+    <span class="spacer"></span>
+    <div style="font-weight: bold;">{{ data.subTotal | async | currency }}</div>
+  </div>
 </div>
 
-<div mat-dialog-actions>
+<div mat-dialog-actions style="margin-top: 32px;">
   <div class="button">
     <button type="button" mat-stroked-button (click)="onCancel()">Cancel</button>
   </div>
   <span class="spacer"></span>
   <div class="button">
-    <button type="submit" mat-raised-button color="primary" (click)="onPay()" cdkFocusInitial>Pay</button>
+    <button type="submit" mat-raised-button color="primary" (click)="onPay()" cdkFocusInitial>Place Order</button>
   </div>
 </div>

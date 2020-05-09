@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 import { formatMonies } from '@soongwei/commons/basket/monies';
 import _ from 'lodash';
 import { combineLatest, Observable } from 'rxjs';
-import { take } from 'rxjs/operators';
+import { take, map } from 'rxjs/operators';
 import { RootState } from 'src/app/store';
 import { CreateInvoice } from 'src/app/store/invoice/invoice.action';
 import { selectUser } from 'src/app/store/user/user.reducer';
@@ -24,6 +24,15 @@ export class DialogPaymentComponent implements OnInit {
   user$ = this.store.select(selectUser.user);
   couponCode$ = this.store.select(selectBasket.couponCode);
   // hideDialog$ = this.store.select(selectInvoice.hideDialog); 
+  totalItems$ = this.data.basketArr.pipe(
+    map(basketArr => basketArr.reduce((total, basket) => total + basket.quantity, 0))
+  );
+
+  originalPriceTotal$ = this.data.basketArr.pipe(
+    map(basketArr => basketArr.reduce((total, basket) => total + (Math.round(((basket.originalPrice || basket.totalPrice) + Number.EPSILON) * 100) / 100), 0))
+  )
+
+
 
   constructor(
     public dialogRef: MatDialogRef<DialogPaymentComponent>,
@@ -69,5 +78,6 @@ export class DialogPaymentComponent implements OnInit {
     })
 
   }
+
 
 }
