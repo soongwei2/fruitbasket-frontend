@@ -13,15 +13,15 @@ export class UpdateProductsService {
   productList$ = this.store.select(selectProduct.list);
   basketList$ = this.store.select(selectBasket.list);
   constructor(public store: Store<RootState>) {
-    console.log("SUB Product list")
+
     this.productList$.subscribe((productList) => {
       //update product list in basket
       this.basketList$.pipe(take(1)).toPromise().then((basketList) => {
-        console.log("basketList: " ,basketList)
+  
         const newBasketList = basketList.map((eachItem) => {
-          console.log("eachItem: " ,eachItem)
+       
           const newProduct = productList.find((product) => product.id == eachItem.product.id);
-          console.log("newProduct: " ,newProduct)
+     
           if(newProduct){
             return { ...eachItem, product: newProduct };
           }else{
