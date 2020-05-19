@@ -1,11 +1,12 @@
 import { DataSource } from '@angular/cdk/collections';
 import { Store } from '@ngrx/store';
-import { promotion } from '@soongwei/commons/basket/calculations';
+import { basketListing } from '@soongwei/commons/basket/promotions';
 import { combineLatest, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { IBasket } from 'src/app/shared/models/basket';
 import { RootState } from 'src/app/store';
 import { selectBasket } from 'src/app/store/basket/basket.reducer';
+import { getTotalPrice } from '@soongwei/commons/basket/calculations';
 
 export class BasketDataSource extends DataSource<IBasket> {
     constructor(private store: Store<RootState>) {
@@ -16,7 +17,7 @@ export class BasketDataSource extends DataSource<IBasket> {
             this.store.select(selectBasket.list),
             this.store.select(selectBasket.couponCode))
             .pipe(map((combinedArr) => {
-                const calculatedBasket = promotion(combinedArr[0], combinedArr[1]);
+                const calculatedBasket = basketListing(combinedArr[0], combinedArr[1]);
                 return calculatedBasket;
             }))
 
@@ -24,7 +25,7 @@ export class BasketDataSource extends DataSource<IBasket> {
 
     subTotal() {
         return this.connect().pipe(
-          map(order => order.reduce((total, basket) => total + (Math.round((basket.totalPrice + Number.EPSILON) * 100) / 100), 0)));
+          map(order => getTotalPrice(order)));
       }
     disconnect() { }
 }

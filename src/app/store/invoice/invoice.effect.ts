@@ -11,7 +11,7 @@ import { environment } from 'src/environments/environment';
 import { RootState } from '..';
 import { ClearBasket } from '../basket/basket.action';
 import { hideLoading, showLoading, showSnackBar } from '../layout/layout.action';
-import { AddListInvoice, CreateInvoice, GetListInvoice } from './invoice.action';
+import { AddListInvoice, CreateInvoice, GetListInvoice, CreatePayment } from './invoice.action';
 
 @Injectable()
 export class InvoiceEffects {
@@ -81,6 +81,42 @@ export class InvoiceEffects {
     ),
   ), { dispatch: false })
 
+  CreatePayment$ = createEffect(() => this.actions.pipe(
+    ofType(CreatePayment),
+    tap(() => this.store.dispatch(showLoading())),
+    mergeMap(
+      (action) =>
+        this.http.put(environment.servicePath + "/invoice/payment", { basketArr: action.basketArr, invoice: action.invoice, couponCode: action.couponCode, userId: action.userId })
+          .pipe(
+            map((response: any) => {
+
+              
+              this.dialogPaymentService.close();
+              this.store.dispatch(ClearBasket());
+              this.store.dispatch(showSnackBar({ message: 'Payment successful' }));
+
+              this.router.navigate(['/']).then(() => {
+                return this.router.navigate(['/profile'])
+              }).then(() => {
+                this.store.dispatch(hideLoading());
+              });
+
+
+            }),
+            catchError((error) => {
+              this.store.dispatch(hideLoading());
+
+              if (error.error && error.error.message) {
+                this.store.dispatch(showSnackBar({ message: error.error.message }));
+              } else {
+                this.store.dispatch(showSnackBar({ message: error.message }));
+              }
+
+              return throwError(error);
+            })
+          )
+    ),
+  ), { dispatch: false })
   /* 
     CreateInvoiceSuccess$ = createEffect(() => this.actions.pipe(
       ofType(CreateInvoiceSuccess),

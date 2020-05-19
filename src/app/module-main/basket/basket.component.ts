@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
-import { formatMonies } from '@soongwei/commons/basket/monies';
 import _ from 'lodash';
 import { combineLatest } from 'rxjs';
 import { take } from 'rxjs/operators';
@@ -26,7 +25,6 @@ export class BasketComponent implements OnInit {
 
   dataSource = new BasketDataSource(this.store);
   displayedColumns = ['name', 'unitPrice', 'quantity', 'totalPrice'];
-  formatMonies = formatMonies;
   _ = _;
 
   coupon$ = this.store.select(selectBasket.couponCode);

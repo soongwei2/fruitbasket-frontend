@@ -1,6 +1,6 @@
 {
   "name": "frontend",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "scripts": {
     "ng": "ng",
     "start": "ng serve --open",
@@ -24,7 +24,7 @@
     "@ngrx/effects": "^9.1.0",
     "@ngrx/store": "^9.1.0",
     "@ngrx/store-devtools": "^9.1.0",
-    "@soongwei/commons": "^1.0.0",
+    "@soongwei/commons": "^1.0.1",
     "@types/lodash": "^4.14.150",
     "i": "^0.3.6",
     "lodash": "^4.17.15",

@@ -1,16 +1,16 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
-import { formatMonies } from '@soongwei/commons/basket/monies';
-import _ from 'lodash';
+import { getOriginalPrice } from '@soongwei/commons/basket/calculations';
+import { generateInvoice } from '@soongwei/commons/basket/invoice';
 import { combineLatest, Observable } from 'rxjs';
-import { take, map } from 'rxjs/operators';
+import { map, take } from 'rxjs/operators';
 import { RootState } from 'src/app/store';
-import { CreateInvoice } from 'src/app/store/invoice/invoice.action';
+import { selectBasket } from 'src/app/store/basket/basket.reducer';
+import { CreatePayment } from 'src/app/store/invoice/invoice.action';
 import { selectUser } from 'src/app/store/user/user.reducer';
 import { IBasket } from '../../models/basket';
-import { IInvoice } from '../../models/invoice';
-import { selectBasket } from 'src/app/store/basket/basket.reducer';
+
 
 @Component({
   templateUrl: './dialog-payment.component.html',
@@ -18,8 +18,6 @@ import { selectBasket } from 'src/app/store/basket/basket.reducer';
 })
 
 export class DialogPaymentComponent implements OnInit {
-
-  formatMonies = formatMonies;
 
   user$ = this.store.select(selectUser.user);
   couponCode$ = this.store.select(selectBasket.couponCode);
@@ -29,7 +27,7 @@ export class DialogPaymentComponent implements OnInit {
   );
 
   originalPriceTotal$ = this.data.basketArr.pipe(
-    map(basketArr => basketArr.reduce((total, basket) => total + (Math.round(((basket.originalPrice || basket.totalPrice) + Number.EPSILON) * 100) / 100), 0))
+    map(basketArr => getOriginalPrice(basketArr))
   )
 
 
@@ -55,25 +53,27 @@ export class DialogPaymentComponent implements OnInit {
       const user = combined[2];
       const couponCode = combined[3];
 
-      const invoiceItems = basketArr.map((eachItem) => {
-        return {
-          quantity: eachItem.quantity,
-          price: _.get(eachItem, 'product.price') || _.get(eachItem, 'promotionPrice'),
-          productName: _.get(eachItem, 'product.name') || _.get(eachItem, 'promotion.name'),
-          promotionName: _.get(eachItem, 'product.name') ? _.get(eachItem, 'promotion.name') : undefined,
-          promotionDiscount: _.get(eachItem, 'promotion.discount'),
-          originalPrice: _.get(eachItem, 'originalPrice'),
-          totalPrice: _.get(eachItem, 'totalPrice'),
-        }
-      });
 
-      const invoice: IInvoice = {
-        subTotal: subTotal,
-        userId: user.id,
-        invoiceItems
-      }
+      const invoice = generateInvoice(basketArr, user.id);
+      /*   const invoiceItems = basketArr.map((eachItem) => {
+          return {
+            quantity: eachItem.quantity,
+            price: _.get(eachItem, 'product.price') || _.get(eachItem, 'promotionPrice'),
+            productName: _.get(eachItem, 'product.name') || _.get(eachItem, 'promotion.name'),
+            promotionName: _.get(eachItem, 'product.name') ? _.get(eachItem, 'promotion.name') : undefined,
+            promotionDiscount: _.get(eachItem, 'promotion.discount'),
+            originalPrice: _.get(eachItem, 'originalPrice'),
+            totalPrice: _.get(eachItem, 'totalPrice'),
+          }
+        });
+  
+        const invoice: IInvoice = {
+          subTotal: subTotal,
+          userId: user.id,
+          invoiceItems
+        } */
 
-      this.store.dispatch(CreateInvoice({ invoice, couponCode }));
+      this.store.dispatch(CreatePayment({ basketArr, invoice, couponCode, userId: user.id }));
 
     })
 
